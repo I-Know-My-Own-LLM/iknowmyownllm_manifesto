@@ -34,7 +34,7 @@ We follow these actionable principles to protect ourselves and others from AI fr
 7. **Document Everything** — Record claims, communications, and interactions for accountability.
 8. **Leverage Instincts and Community** — Trust your gut; consult shared wisdom and collective experiences when in doubt.
 
-📖 **[Full Principles Document](github-repo-template/PRINCIPLES.md)**
+📖 **[Full Principles Document](PRINCIPLES.md)**
 
 ## ✍️ Sign the Manifesto
 
@@ -61,7 +61,7 @@ Anonymous,,,
 - Leave email empty or use `anonymous@example.com`
 - All fields except name are optional
 
-📝 **[Full signing instructions](github-repo-template/SIGNATORIES.md)**
+📝 **[Full signing instructions](SIGNATORIES.md)**
 
 ## 🤝 Contribute
 
@@ -72,7 +72,7 @@ This manifesto belongs to the community. We welcome contributions:
 - **Join Discussions** to share your experiences
 - **Sign the Manifesto** to show your support
 
-Please read [CONTRIBUTING.md](github-repo-template/CONTRIBUTING.md) before submitting changes.
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) before submitting changes.
 
 ---
 
@@ -108,11 +108,10 @@ npm run preview     # Preview production build
 │   └── resources.vue       # Resources page
 ├── public/
 │   └── signatures.csv      # Signatory data (edit this to sign!)
-└── github-repo-template/   # Standalone manifesto documents
-    ├── PRINCIPLES.md
-    ├── SIGNATORIES.md
-    ├── CONTRIBUTING.md
-    └── CODE_OF_CONDUCT.md
+├── PRINCIPLES.md
+├── SIGNATORIES.md
+├── CONTRIBUTING.md
+└── CODE_OF_CONDUCT.md
 ```
 
 ## 📄 License
