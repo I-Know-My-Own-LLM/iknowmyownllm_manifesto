@@ -28,26 +28,12 @@
           </div>
         </div>
       </div>
-          <div class="sign-form-wrapper">
-            <div class="sign-form">
-              <div class="form-header">
-                <h3>Sign the Manifesto</h3>
-                <p>Choose a quick path. We review submissions and update the public records after verification.</p>
-              </div>
-              <div class="sign-actions">
-                <a class="btn btn-primary" href="https://forms.gle/3xKuRVxmhV6pUiL76" target="_blank" rel="noopener">
-                  📝 Sign via Google Form
-                </a>
-                <a class="btn btn-secondary" href="https://github.com/I-Know-My-LLM-Thanks/iknowmyllm_manifesto/issues/new?template=signature-request.md" target="_blank" rel="noopener">
-                  🐙 Sign via GitHub Issue
-                </a>
-              </div>
-              <p class="form-note">
-                Want to share a red flag pattern? Use the
-                <a href="https://github.com/I-Know-My-LLM-Thanks/iknowmyllm_manifesto/issues/new?template=red-flag-share.md" target="_blank" rel="noopener">Red Flag Share template</a>.
-              </p>
-            </div>
-          </div>
+    </section>
+
+    <!-- Principles Section -->
+    <section id="principles" class="section principles">
+      <div class="container">
+        <h2>8 Principles</h2>
         <p class="section-intro">Actionable guidelines to protect yourself from AI fraud. These principles are open for community refinement via GitHub.</p>
 
         <div class="principles-compact">
