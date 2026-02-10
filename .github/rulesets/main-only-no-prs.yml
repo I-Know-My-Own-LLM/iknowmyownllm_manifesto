@@ -1,0 +1,33 @@
+name: main-only-no-prs
+target: branch
+enforcement: active
+
+conditions:
+  ref_name:
+    include:
+      - "refs/heads/main"
+    exclude: []
+
+rules:
+  # No merge commits or force pushes
+  - type: required_linear_history
+  - type: non_fast_forward
+  - type: deletion
+
+  # No PRs at all
+  - type: pull_request
+    parameters:
+      enabled: false
+
+  # Block all direct pushes to main
+  - type: restrict_pushes
+    parameters:
+      restrict_pushes: true
+      allowed_actor_ids: []
+      allowed_team_ids: []
+      allowed_integration_ids: []
+
+  # Optional but recommended hardening
+  - type: required_signatures
+
+bypass_actors: []
