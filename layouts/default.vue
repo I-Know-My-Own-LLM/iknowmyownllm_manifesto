@@ -49,7 +49,7 @@
             <h4>Connect</h4>
             <nav class="footer-nav">
               <a href="https://github.com/I-Know-My-Own-LLM" target="_blank" rel="noopener">GitHub</a>
-              <a href="https://x.com/iknowmyllm" target="_blank" rel="noopener">#IKnowMyLLM</a>
+              <a href="https://x.com/iknowmyllm" target="_blank" rel="noopener">#IKnowMyOwnLLM</a>
             </nav>
           </div>
         </div>
