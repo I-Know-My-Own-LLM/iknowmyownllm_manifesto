@@ -7,15 +7,13 @@ labels: submission
 
 **Thank you for supporting the manifesto!**
 
-**Privacy note**: Issues are public. Use "Anonymous" or a pseudonym for privacy. Do **not** include specific company/vendor names in red flag stories — keep them generic.
+**Privacy note**: Issues are public. Use "Anonymous" or a pseudonym for privacy. Do **not** include specific company/vendor names in red flag stories, keep them generic.
 
 For full instructions, see [CONTRIBUTING.md](https://github.com/I-Know-My-Own-LLM/iknowmyownllm_manifesto/blob/main/CONTRIBUTING.md).
 
 ### What are you submitting? (check all that apply)
 - [ ] Signature for the manifesto
 - [ ] Red flagged story for the Hall of Amusing Red Flags
-- [ ] Both
-
 ---
 
 ## Section 1: Signature Details *(fill only if submitting a signature)*
@@ -52,16 +50,14 @@ Explain the risk or red-flag logic.
 How did you identify or verify this pattern?
 >
 
-**Credit**
-How would you like to be credited if published? (e.g., Anonymous, a pseudonym, or your name)
-> Anonymous
-
 ---
 
 ## Checklist
 
-- [ ] I have read and agree with the manifesto principles
-- [ ] I don't name companies or individuals in the red flags
+- [ ] SIGNATURE - I have read and agree with the manifesto principles.
+- [ ] SIGNATURE - I consent to my signature being publicly displayed on the manifesto site.
+- [ ] REDFLAG - My red flag story is based on real experiences (not fabricated).
+- [ ] REDFLAG - I don't directly name companies or individuals.
 
 ---
 

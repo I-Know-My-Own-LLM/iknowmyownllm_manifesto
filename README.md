@@ -53,7 +53,7 @@ Formatting rules:
 Add your signature using either option:
 
 - **Google Form**: https://forms.gle/3xKuRVxmhV6pUiL76
-- **GitHub Issue**: https://github.com/I-Know-My-Own-LLM/iknowmyownllm_manifesto/issues/new?template=signature-request.md
+- **GitHub Issue**: https://github.com/I-Know-My-Own-LLM/iknowmyownllm_manifesto/issues/new?template=signature-and-redflag-request.md
 
 **Signature format** (CSV):
 ```csv

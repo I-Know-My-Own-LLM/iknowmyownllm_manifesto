@@ -18,7 +18,7 @@ Two quick options to sign:
 
 **Option B: GitHub Issue**
 
-[🐙 Sign via GitHub Issue](https://github.com/I-Know-My-Own-LLM/iknowmyownllm_manifesto/issues/new?template=signature-request.md)
+[🐙 Sign via GitHub Issue](https://github.com/I-Know-My-Own-LLM/iknowmyownllm_manifesto/issues/new?template=signature-and-redflag-request.md)
 
 **Option C: Pull Request (Advanced)**
 
