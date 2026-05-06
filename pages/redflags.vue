@@ -87,6 +87,9 @@
           <NuxtLink to="/#red-flags" class="btn btn-secondary">
             ← Back to Manifesto
           </NuxtLink>
+          <NuxtLink to="/resources" class="btn btn-secondary">
+            📚 Research Tools →
+          </NuxtLink>
           <a
             href="https://github.com/I-Know-My-Own-LLM/iknowmyownllm_manifesto/issues/new?template=signature-and-redflag-request.md"
             target="_blank"
@@ -105,9 +108,20 @@
 import { ref, computed, onMounted } from 'vue'
 
 useHead({
-  title: 'Hall of Red Flags - I Know My LLM',
+  title: '🎪 Hall of Red Flags — AI Vendor Warning Signs | I Know My Own LLM',
   meta: [
-    { name: 'description', content: 'Community-submitted red flag stories from AI platform evaluations. Real patterns, anonymized but unembellished.' }
+    { name: 'description', content: 'Real red flag stories from AI platform evaluations. Spot fake credentials, hype jargon, and pressure tactics before they cost you. Community-submitted, anonymized, unembellished.' },
+    { name: 'keywords', content: 'AI red flags, AI vendor warning signs, AI fraud patterns, AI due diligence stories, AI platform evaluation' },
+    { property: 'og:title', content: '🎪 Hall of Red Flags — AI Vendor Warning Signs' },
+    { property: 'og:description', content: 'Real patterns from AI platform evaluations. You couldn\'t make this stuff up.' },
+    { property: 'og:url', content: 'https://iknowmyllm.com/redflags' },
+    { property: 'og:image', content: 'https://iknowmyllm.com/hero_banner.jpg' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: '🎪 Hall of Red Flags — AI Vendor Warning Signs' },
+    { name: 'twitter:description', content: 'Community-submitted AI vendor red flags. Anonymized but unembellished.' }
+  ],
+  link: [
+    { rel: 'canonical', href: 'https://iknowmyllm.com/redflags' }
   ]
 })
 

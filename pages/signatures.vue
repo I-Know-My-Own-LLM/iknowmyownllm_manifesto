@@ -82,6 +82,12 @@
           <NuxtLink to="/#sign" class="btn btn-secondary">
             ← Back to Manifesto
           </NuxtLink>
+          <NuxtLink to="/redflags" class="btn btn-secondary">
+            🎪 Red Flags →
+          </NuxtLink>
+          <NuxtLink to="/resources" class="btn btn-secondary">
+            📚 Research Tools →
+          </NuxtLink>
         </div>
       </div>
     </section>
@@ -92,9 +98,20 @@
 import { ref, computed, onMounted } from 'vue'
 
 useHead({
-  title: 'Signatures Hall - I Know My LLM',
+  title: 'Signatories — Who Signed the AI Evaluation Manifesto | I Know My Own LLM',
   meta: [
-    { name: 'description', content: 'View all signatories of the I Know My LLM manifesto - community members committed to trustworthy AI evaluation.' }
+    { name: 'description', content: 'See who has signed the I Know My Own LLM manifesto. Join the growing community committed to evidence-based AI platform evaluation.' },
+    { name: 'keywords', content: 'AI manifesto signatories, I Know My Own LLM community, sign AI manifesto, AI accountability community' },
+    { property: 'og:title', content: 'Signatories — Who Signed the AI Evaluation Manifesto' },
+    { property: 'og:description', content: 'The growing community of people who evaluate AI platforms with evidence, not hype.' },
+    { property: 'og:url', content: 'https://iknowmyllm.com/signatures' },
+    { property: 'og:image', content: 'https://iknowmyllm.com/hero_banner.jpg' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'Who Signed the AI Evaluation Manifesto' },
+    { name: 'twitter:description', content: 'Join the community. Evidence over promises, transparency over hype.' }
+  ],
+  link: [
+    { rel: 'canonical', href: 'https://iknowmyllm.com/signatures' }
   ]
 })
 

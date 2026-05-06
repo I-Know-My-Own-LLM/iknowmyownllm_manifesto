@@ -5,8 +5,8 @@
     <header class="nav">
       <div class="container nav-inner">
         <NuxtLink to="/" class="logo">
-          <img src="/logo.png" alt="Trustworthy AI Manifesto" class="logo-img" />
-          <span class="logo-text">I Know My Own LLM - Thanks!</span>
+          <img src="/logo.png" alt="I Know My Own LLM" class="logo-img" />
+          <span class="logo-text">I Know My Own LLM — Thanks!</span>
         </NuxtLink>
         <button class="nav-toggle" @click="menuOpen = !menuOpen" aria-label="Toggle menu">
           <span></span>
@@ -65,6 +65,26 @@
 
 <script setup lang="ts">
 const menuOpen = ref(false)
+
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: 'I Know My Own LLM',
+        url: 'https://iknowmyllm.com',
+        logo: 'https://iknowmyllm.com/logo.png',
+        sameAs: [
+          'https://github.com/I-Know-My-Own-LLM',
+          'https://x.com/iknowmyllm'
+        ],
+        description: 'A community-driven manifesto with 8 actionable principles for evaluating AI platforms.'
+      })
+    }
+  ]
+})
 </script>
 
 <style scoped>

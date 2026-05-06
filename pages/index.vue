@@ -6,8 +6,9 @@
       <div class="container hero-grid">
         <div class="hero-copy">
           <span class="hero-badge">Community Manifesto</span>
-          <h1>I Know My Own LLM - Thanks!</h1>
-          <p class="lead">We are uncovering better ways to evaluate AI platforms by doing it and helping others do it.</p>
+          <h1>I Know My Own LLM — Thanks!</h1>
+          <p class="lead">8 principles for evaluating AI platforms without the hype. Evidence over promises, transparency over buzzwords, community wisdom over blind trust.</p>
+          <p class="lead-sub">We're building the checklist we wish we'd had before the demos, NDAs, and "limited-time" offers.</p>
           <div class="hero-actions">
             <a href="#sign" class="btn btn-primary">Sign the Manifesto</a>
           </div>
@@ -36,7 +37,7 @@
         <p class="section-intro">Actionable guidelines to protect yourself from AI fraud. These principles are open for community refinement via GitHub.</p>
 
         <div class="principles-compact">
-          <div v-for="(principle, index) in principles" :key="principle.title" class="principle-row">
+          <div v-for="(principle, index) in principles" :key="principle.title" :id="'principle-' + (index + 1)" class="principle-row">
             <span class="p-num">{{ index + 1 }}</span>
             <div class="p-content">
               <strong>{{ principle.title }}</strong>
@@ -225,17 +226,39 @@ import principlesMarkdown from '~/PRINCIPLES.md?raw'
 
 // SEO
 useHead({
-  title: 'I know my own LLM - Thanks!',
+  title: 'I Know My Own LLM — 8 Principles for Evaluating AI Platforms',
   meta: [
-    { name: 'description', content: 'A community-driven AI manifesto with 8 actionable principles for evaluating AI platforms. Evidence over promises, transparency over hype. Join the trustworthy AI community.' },
-    { name: 'keywords', content: 'AI manifesto principles, trustworthy AI community, AI fraud awareness, AI ethics, evaluate AI platforms, AI red flags' },
-    { property: 'og:title', content: 'I know my own LLM - Thanks!' },
-    { property: 'og:description', content: 'A community-driven standard for evaluating AI platforms. 8 actionable principles to protect yourself from AI fraud.' },
-    { property: 'og:image', content: '/hero_banner.jpg' },
+    { name: 'description', content: '8 actionable principles for evaluating AI platforms. Spot red flags, verify credentials, demand proof. A community manifesto — sign and join.' },
+    { name: 'keywords', content: 'evaluate AI platforms, AI red flags, AI due diligence, AI manifesto, trustworthy AI, AI fraud prevention, AI vendor evaluation' },
+    { property: 'og:title', content: 'I Know My Own LLM — 8 Principles for Evaluating AI Platforms' },
+    { property: 'og:description', content: 'Spot the hype, verify the claims, protect your org. A community manifesto with teeth. Sign and share.' },
+    { property: 'og:image', content: 'https://iknowmyllm.com/hero_banner.jpg' },
+    { property: 'og:image:width', content: '1200' },
+    { property: 'og:image:height', content: '630' },
+    { property: 'og:url', content: 'https://iknowmyllm.com/' },
     { property: 'og:type', content: 'website' },
     { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:title', content: 'I know my own LLM - Thanks!' },
-    { name: 'twitter:description', content: 'Evidence over promises, transparency over hype. Join the trustworthy AI community.' }
+    { name: 'twitter:title', content: 'I Know My Own LLM — 8 Principles for Evaluating AI Platforms' },
+    { name: 'twitter:description', content: 'Evidence over promises, transparency over hype. The community checklist for AI vendor evaluation.' }
+  ],
+  link: [
+    { rel: 'canonical', href: 'https://iknowmyllm.com/' }
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: 'I Know My Own LLM',
+        url: 'https://iknowmyllm.com',
+        description: '8 actionable principles for evaluating AI platforms. A community manifesto.',
+        potentialAction: {
+          '@type': 'ReadAction',
+          target: 'https://iknowmyllm.com/'
+        }
+      })
+    }
   ]
 })
 

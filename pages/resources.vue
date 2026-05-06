@@ -354,9 +354,20 @@
 
 <script setup lang="ts">
 useHead({
-  title: 'Research Tools - I Know My LLM',
+  title: 'Research Tools — AI Due Diligence Resources & Frameworks | I Know My Own LLM',
   meta: [
-    { name: 'description', content: 'Verification tools, AI governance frameworks, and community connections for evaluating AI platforms.' }
+    { name: 'description', content: 'Verification databases, regulatory lookups, security certification checks, and AI governance frameworks. Everything you need to evaluate AI vendors properly.' },
+    { name: 'keywords', content: 'AI due diligence tools, verify AI vendor, FINRA BrokerCheck AI, SOC 2 verification, AI governance frameworks, OECD AI principles, EU AI Act' },
+    { property: 'og:title', content: 'Research Tools — AI Due Diligence Resources' },
+    { property: 'og:description', content: 'Regulatory lookups, security cert verification, and governance frameworks for evaluating AI platforms.' },
+    { property: 'og:url', content: 'https://iknowmyllm.com/resources' },
+    { property: 'og:image', content: 'https://iknowmyllm.com/hero_banner.jpg' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'AI Due Diligence Research Tools' },
+    { name: 'twitter:description', content: 'Verification databases, regulatory lookups, and governance frameworks for evaluating AI vendors.' }
+  ],
+  link: [
+    { rel: 'canonical', href: 'https://iknowmyllm.com/resources' }
   ]
 })
 </script>
