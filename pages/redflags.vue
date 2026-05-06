@@ -18,7 +18,7 @@
     <section class="section">
       <div class="container">
         <div class="flags-grid">
-          <div v-for="flag in paginatedFlags" :key="flag.title" class="flag-card">
+          <div v-for="flag in redFlags" :key="flag.title" class="flag-card">
             <div class="flag-icon">{{ flag.icon }}</div>
             <h4>{{ flag.title }}</h4>
             <div class="flag-claim">{{ flag.claim }}</div>
@@ -30,50 +30,6 @@
         </div>
 
         <!-- Pagination -->
-        <div v-if="totalPages > 1" class="pagination">
-          <button
-            class="pagination-btn"
-            :disabled="currentPage === 1"
-            @click="goToPage(1)"
-          >
-            ««
-          </button>
-          <button
-            class="pagination-btn"
-            :disabled="currentPage === 1"
-            @click="goToPage(currentPage - 1)"
-          >
-            «
-          </button>
-
-          <div class="pagination-numbers">
-            <button
-              v-for="page in visiblePages"
-              :key="page"
-              class="pagination-num"
-              :class="{ active: page === currentPage }"
-              @click="goToPage(page)"
-            >
-              {{ page }}
-            </button>
-          </div>
-
-          <button
-            class="pagination-btn"
-            :disabled="currentPage === totalPages"
-            @click="goToPage(currentPage + 1)"
-          >
-            »
-          </button>
-          <button
-            class="pagination-btn"
-            :disabled="currentPage === totalPages"
-            @click="goToPage(totalPages)"
-          >
-            »»
-          </button>
-        </div>
-
         <!-- Reminder -->
         <div class="flags-reminder">
           <p>
@@ -126,31 +82,6 @@ useHead({
 })
 
 const redFlags = ref([])
-const currentPage = ref(1)
-const itemsPerPage = 9
-
-const totalPages = computed(() => Math.max(1, Math.ceil(redFlags.value.length / itemsPerPage)))
-
-const paginatedFlags = computed(() => {
-  const start = (currentPage.value - 1) * itemsPerPage
-  const end = start + itemsPerPage
-  return redFlags.value.slice(start, end)
-})
-
-const visiblePages = computed(() => {
-  const pages = []
-  const start = Math.max(1, currentPage.value - 2)
-  const end = Math.min(totalPages.value, currentPage.value + 2)
-  for (let i = start; i <= end; i++) {
-    pages.push(i)
-  }
-  return pages
-})
-
-function goToPage(page) {
-  currentPage.value = page
-  window.scrollTo({ top: 0, behavior: 'smooth' })
-}
 
 function parseCsvLine(line) {
   const fields = []

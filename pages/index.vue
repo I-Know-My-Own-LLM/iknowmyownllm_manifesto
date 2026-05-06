@@ -271,7 +271,7 @@ const copied = ref(false)
 const signatures = ref([])
 
 // Top 6 for homepage preview
-const topRedFlags = computed(() => redFlags.value.slice(0, 6))
+const topRedFlags = computed(() => redFlags.value.slice(0, 9))
 const topSignatures = computed(() => signatures.value.slice(0, 6))
 
 function formatDate(timestamp) {
