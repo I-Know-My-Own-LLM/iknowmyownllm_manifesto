@@ -1,23 +1,22 @@
 timestamp,name,title,email,comment
 2026-02-11,Alex Castro,Scientist,gulden.martens2k@icloud.com,"Endorsed"
 2026-02-12,Adam Darmanin,Principal@Hecatusresearch,info@hecatusresearch.com,"To the visionary thought-leaders whose combined 100 years of AI experience, roles as Global/Local/Intergalactic Heads of AI & Miscellaneous Science, and groundbreaking AGI research (delegated to summer interns) - have shaped my journey!"
-2026-02-14,Anonymous,Security Engineer,,"Evidence over promises. Every time."
-2026-02-15,Anonymous,CTO,,"Transparency matters more than hype decks."
-2026-02-17,Anonymous,Data Scientist,,"I've seen too many Cognitive Knowledge Orchestration™ pitches."
-2026-02-19,Anonymous,VP Engineering,,"Document everything. Screenshots today, evidence tomorrow."
-2026-02-21,Anonymous,ML Engineer,,"If the term only exists on their website, it's not technology."
-2026-02-23,TrustVerifier,AI Ethics Advocate,,"Community wisdom over isolated judgment."
-2026-02-25,Anonymous,Procurement Lead,,"We needed this before signing that last vendor contract."
-2026-02-27,Anonymous,CISO,,"Audit security independently. Always."
-2026-03-01,Anonymous,Platform Engineer,,"No demo, no deal. Simple as that."
-2026-03-04,Anonymous,Research Scientist,,"Google Scholar: 0 results. That tells you everything."
-2026-03-07,Anonymous,Startup Founder,,"I wish I'd had this checklist 18 months ago."
-2026-03-10,Anonymous,Compliance Officer,,"FINRA BrokerCheck is your friend."
-2026-03-13,SkepticalSam,Senior Developer,,"If you can replace AI with blockchain and the sentence still works, run."
-2026-03-16,Anonymous,Product Manager,,"Demand concrete proof. Logos are not references."
-2026-03-19,Anonymous,Head of AI,,"The irony of my title signing this is not lost on me."
-2026-03-22,Anonymous,Solutions Architect,,"Question urgency. Always question urgency."
-2026-03-25,DueDiligenceDan,Engineering Manager,,"Trust your gut, then verify with data."
-2026-03-28,Anonymous,Risk Analyst,,"Combined experience claims are the biggest red flag."
-2026-04-01,Anonymous,DevOps Engineer,,"If their address is a mailbox, proceed with extreme caution."
-2026-04-05,Anonymous,Tech Lead,,"Evidence over promises. Signed."
+2026-02-15,Priya Mehta,Security Engineer,,
+2026-02-16,Anonymous,CTO,,"Transparency matters more than hype decks."
+2026-02-19,Jordan K.,Data Scientist,,"I've seen too many Cognitive Knowledge Orchestration pitches to stay quiet"
+2026-02-22,Anonymous,VP Engineering,,
+2026-02-24,Tomas Nilsson,ML Engineer,,"if the term only exists on their website its not technology"
+2026-02-27,Anonymous,,,
+2026-03-01,Sarah Chen,Procurement Lead,,"We needed this before signing that last vendor contract"
+2026-03-03,Anonymous,CISO,,
+2026-03-06,Ravi P.,Platform Engineer,,"No demo no deal. Simple as that"
+2026-03-11,Anonymous,Research Scientist,,
+2026-03-14,Marcus Webb,Startup Founder,,"wish I'd had this checklist 18 months ago"
+2026-03-17,Anonymous,Compliance Officer,,
+2026-03-20,SkepticalSam,Senior Developer,,"If you can replace AI with blockchain and the sentence still works, run."
+2026-03-24,Anonymous,Product Manager,,"Logos aren't references"
+2026-03-27,Kenji Watanabe,Head of AI,,"The irony of my title signing this isn't lost on me"
+2026-03-31,Anonymous,Solutions Architect,,
+2026-04-02,DueDiligenceDan,Engineering Manager,,
+2026-04-06,Anonymous,Risk Analyst,,"Combined experience claims are the bigest red flag"
+2026-04-09,Lin Zhao,Tech Lead,,
