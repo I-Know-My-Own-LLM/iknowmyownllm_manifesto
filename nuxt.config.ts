@@ -1,13 +1,33 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+const GA_ID = process.env.NUXT_PUBLIC_GA_ID || 'G-QJV29REJZC'
+const gaScripts = GA_ID
+  ? [
+      {
+        src: `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`,
+        async: true,
+      },
+      {
+        innerHTML: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', '${GA_ID}');`,
+      },
+    ]
+  : []
+
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
+
+  runtimeConfig: {
+    public: {
+      gaId: GA_ID,
+    },
+  },
 
   // Support GitHub Pages deployment with base URL
   app: {
     baseURL: process.env.NUXT_APP_BASE_URL || '/',
     head: {
       title: 'I Know My Own LLM — Community Manifesto for Evaluating AI Platforms',
+      script: gaScripts,
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
