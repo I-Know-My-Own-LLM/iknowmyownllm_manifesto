@@ -36,6 +36,9 @@ jobs:
         env:
           NUXT_APP_BASE_URL: /${{ github.event.repository.name }}/
 
+      - name: Validate generated SEO
+        run: npm run check:seo
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3.0.1
         with:

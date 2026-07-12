@@ -94,28 +94,32 @@
   </div>
 </template>
 
-<script setup>
-import { ref, computed, onMounted } from 'vue'
+<script setup lang="ts">
+import { ref, computed } from 'vue'
 
-useHead({
+usePageSeo({
   title: 'Signatories — Who Signed the AI Evaluation Manifesto | I Know My Own LLM',
-  meta: [
-    { name: 'description', content: 'See who has signed the I Know My Own LLM manifesto. Join the growing community committed to evidence-based AI platform evaluation.' },
-    { name: 'keywords', content: 'AI manifesto signatories, I Know My Own LLM community, sign AI manifesto, AI accountability community' },
-    { property: 'og:title', content: 'Signatories — Who Signed the AI Evaluation Manifesto' },
-    { property: 'og:description', content: 'The growing community of people who evaluate AI platforms with evidence, not hype.' },
-    { property: 'og:url', content: 'https://iknowmyllm.com/signatures' },
-    { property: 'og:image', content: 'https://iknowmyllm.com/hero_banner.jpg' },
-    { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:title', content: 'Who Signed the AI Evaluation Manifesto' },
-    { name: 'twitter:description', content: 'Join the community. Evidence over promises, transparency over hype.' }
-  ],
-  link: [
-    { rel: 'canonical', href: 'https://iknowmyllm.com/signatures' }
-  ]
+  description: 'See who has signed the I Know My Own LLM manifesto. Join the growing community committed to evidence-based AI platform evaluation.',
+  path: '/signatures'
 })
 
-const signatures = ref([])
+useHead({
+  script: [{
+    type: 'application/ld+json',
+    innerHTML: JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Manifesto', item: 'https://iknowmyllm.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Signatories', item: 'https://iknowmyllm.com/signatures' }
+      ]
+    })
+  }]
+})
+
+const { data: signatures } = await useFetch('/api/signatures', {
+  default: () => []
+})
 const currentPage = ref(1)
 const itemsPerPage = 12
 
@@ -200,17 +204,6 @@ function parseCsvRows(csv) {
   return rows
 }
 
-onMounted(async () => {
-  try {
-    const response = await fetch('/signatures.csv')
-    if (response.ok) {
-      const csv = await response.text()
-      signatures.value = parseCsvRows(csv).filter(row => row.name)
-    }
-  } catch (error) {
-    console.log('Could not load signatures:', error)
-  }
-})
 </script>
 
 <style scoped>

@@ -20,7 +20,7 @@
         <div class="flags-grid">
           <div v-for="flag in redFlags" :key="flag.title" class="flag-card">
             <div class="flag-icon">{{ flag.icon }}</div>
-            <h4>{{ flag.title }}</h4>
+            <h2>{{ flag.title }}</h2>
             <div class="flag-claim">{{ flag.claim }}</div>
             <div class="flag-reality">
               {{ flag.reality }}
@@ -60,28 +60,42 @@
   </div>
 </template>
 
-<script setup>
-import { ref, computed, onMounted } from 'vue'
-
-useHead({
-  title: '🎪 Hall of Red Flags — AI Vendor Warning Signs | I Know My Own LLM',
-  meta: [
-    { name: 'description', content: 'Real red flag stories from AI platform evaluations. Spot fake credentials, hype jargon, and pressure tactics before they cost you. Community-submitted, anonymized, unembellished.' },
-    { name: 'keywords', content: 'AI red flags, AI vendor warning signs, AI fraud patterns, AI due diligence stories, AI platform evaluation' },
-    { property: 'og:title', content: '🎪 Hall of Red Flags — AI Vendor Warning Signs' },
-    { property: 'og:description', content: 'Real patterns from AI platform evaluations. You couldn\'t make this stuff up.' },
-    { property: 'og:url', content: 'https://iknowmyllm.com/redflags' },
-    { property: 'og:image', content: 'https://iknowmyllm.com/hero_banner.jpg' },
-    { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:title', content: '🎪 Hall of Red Flags — AI Vendor Warning Signs' },
-    { name: 'twitter:description', content: 'Community-submitted AI vendor red flags. Anonymized but unembellished.' }
-  ],
-  link: [
-    { rel: 'canonical', href: 'https://iknowmyllm.com/redflags' }
-  ]
+<script setup lang="ts">
+const { data: redFlags } = await useFetch('/api/red-flags', {
+  default: () => []
 })
 
-const redFlags = ref([])
+usePageSeo({
+  title: '🎪 Hall of Red Flags — AI Vendor Warning Signs | I Know My Own LLM',
+  description: 'Real red flag stories from AI platform evaluations. Spot fake credentials, hype jargon, and pressure tactics before they cost you. Community-submitted, anonymized, unembellished.',
+  path: '/redflags'
+})
+
+useHead({
+  script: [{
+    type: 'application/ld+json',
+    innerHTML: JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      name: 'AI Vendor Red Flags and Warning Signs',
+      itemListElement: redFlags.value.map((flag, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: flag.title
+      }))
+    })
+  }, {
+    type: 'application/ld+json',
+    innerHTML: JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Manifesto', item: 'https://iknowmyllm.com/' },
+        { '@type': 'ListItem', position: 2, name: 'AI Vendor Red Flags', item: 'https://iknowmyllm.com/redflags' }
+      ]
+    })
+  }]
+})
 
 function parseCsvLine(line) {
   const fields = []
@@ -143,17 +157,6 @@ function parseRedFlagsCsv(csv) {
     .filter(flag => flag.title)
 }
 
-onMounted(async () => {
-  try {
-    const response = await fetch('/red_flag_stories.csv')
-    if (response.ok) {
-      const csv = await response.text()
-      redFlags.value = parseRedFlagsCsv(csv)
-    }
-  } catch (error) {
-    console.log('Could not load red flags:', error)
-  }
-})
 </script>
 
 <style scoped>
@@ -242,7 +245,7 @@ onMounted(async () => {
   margin-bottom: 0.75rem;
 }
 
-.flag-card h4 {
+.flag-card h2 {
   font-size: 1.1rem;
   margin-bottom: 0.75rem;
   color: var(--text-primary);

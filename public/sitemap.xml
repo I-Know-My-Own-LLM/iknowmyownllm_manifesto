@@ -2,22 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://iknowmyllm.com/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2026-05-06</lastmod>
   </url>
   <url>
     <loc>https://iknowmyllm.com/redflags</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-07-11</lastmod>
   </url>
   <url>
     <loc>https://iknowmyllm.com/resources</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2026-05-06</lastmod>
   </url>
   <url>
     <loc>https://iknowmyllm.com/signatures</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-07-11</lastmod>
+  </url>
+  <url>
+    <loc>https://iknowmyllm.com/methodology</loc>
+    <lastmod>2026-07-12</lastmod>
   </url>
 </urlset>

@@ -5,7 +5,7 @@
     <header class="nav">
       <div class="container nav-inner">
         <NuxtLink to="/" class="logo">
-          <img src="/logo.png" alt="I Know My Own LLM" class="logo-img" />
+          <img src="/logo.png" alt="I Know My Own LLM" class="logo-img" width="30" height="36" decoding="async" />
           <span class="logo-text">I Know My Own LLM — Thanks!</span>
         </NuxtLink>
         <button class="nav-toggle" @click="menuOpen = !menuOpen" aria-label="Toggle menu">
@@ -33,7 +33,7 @@
         <div class="footer-grid">
           <div class="footer-section">
             <div class="footer-brand">
-              <img src="/logo.png" alt="Trustworthy AI Manifesto" class="footer-logo" />
+              <img src="/logo.png" alt="Trustworthy AI Manifesto" class="footer-logo" width="47" height="56" loading="lazy" decoding="async" />
               <h4>About</h4>
             </div>
             <p>A community-driven initiative promoting transparency, accountability, and ethical practices in AI platforms.</p>
@@ -43,6 +43,7 @@
             <nav class="footer-nav">
               <NuxtLink to="/">Manifesto</NuxtLink>
               <NuxtLink to="/resources">Research Tools</NuxtLink>
+              <NuxtLink to="/methodology">Editorial Standards</NuxtLink>
               <a href="/#sign">Sign</a>
             </nav>
           </div>
@@ -65,6 +66,30 @@
 
 <script setup lang="ts">
 const menuOpen = ref(false)
+const { trackLink } = useAnalytics()
+
+function trackDocumentClick(event: MouseEvent) {
+  const link = (event.target as HTMLElement)?.closest('a')
+  if (!link) return
+  const href = link.href
+  const placement = link.dataset.analyticsPlacement
+    || (link.closest('header') ? 'navigation' : link.closest('footer') ? 'footer' : 'content')
+
+  if (href.includes('issues/new') && href.includes('signature')) {
+    trackLink('sign_issue_click', placement, href)
+  } else if (href.includes('twitter.com/intent') || href.includes('linkedin.com/sharing')) {
+    trackLink('share_click', placement, href)
+  } else if (link.dataset.guideDownload) {
+    trackLink('guide_download', placement, href)
+  } else if (href.includes('github.com')) {
+    trackLink('outbound_github', placement, href)
+  } else if (link.target === '_blank') {
+    trackLink('resource_click', placement, href)
+  }
+}
+
+onMounted(() => document.addEventListener('click', trackDocumentClick))
+onBeforeUnmount(() => document.removeEventListener('click', trackDocumentClick))
 
 useHead({
   script: [
@@ -80,6 +105,16 @@ useHead({
           'https://github.com/I-Know-My-Own-LLM',
           'https://x.com/iknowmyllm'
         ],
+        description: 'A community-driven manifesto with 8 actionable principles for evaluating AI platforms.'
+      })
+    },
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: 'I Know My Own LLM',
+        url: 'https://iknowmyllm.com/',
         description: 'A community-driven manifesto with 8 actionable principles for evaluating AI platforms.'
       })
     }

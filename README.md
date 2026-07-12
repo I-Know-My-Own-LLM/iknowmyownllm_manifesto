@@ -6,6 +6,8 @@
 
 > **We are uncovering better ways to evaluate AI platforms by doing it and helping others do it.**
 
+Deployment, search-engine submission, analytics, and monthly reporting steps are documented in [SEO_OPERATIONS.md](SEO_OPERATIONS.md).
+
 ## 🎯 The Manifesto
 
 Through our work and collective experience, we have come to value:

@@ -1,5 +1,5 @@
 <template>
-  <div class="manifesto-page">
+  <div ref="pageRoot" class="manifesto-page">
     <!-- Hero -->
     <section class="hero">
       <div class="hero-bg" aria-hidden="true"></div>
@@ -69,7 +69,7 @@
         <div class="flags-grid">
           <div v-for="flag in topRedFlags" :key="flag.title" class="flag-card">
             <div class="flag-icon">{{ flag.icon }}</div>
-            <h4>{{ flag.title }}</h4>
+            <h3>{{ flag.title }}</h3>
             <div class="flag-claim">{{ flag.claim }}</div>
             <div class="flag-reality">
               {{ flag.reality }}
@@ -220,30 +220,18 @@
   </div>
 </template>
 
-<script setup>
-import { ref, computed, onMounted } from 'vue'
+<script setup lang="ts">
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import principlesMarkdown from '~/PRINCIPLES.md?raw'
 
 // SEO
-useHead({
+usePageSeo({
   title: 'I Know My Own LLM — 8 Principles for Evaluating AI Platforms',
-  meta: [
-    { name: 'description', content: '8 actionable principles for evaluating AI platforms. Spot red flags, verify credentials, demand proof. A community manifesto — sign and join.' },
-    { name: 'keywords', content: 'evaluate AI platforms, AI red flags, AI due diligence, AI manifesto, trustworthy AI, AI fraud prevention, AI vendor evaluation' },
-    { property: 'og:title', content: 'I Know My Own LLM — 8 Principles for Evaluating AI Platforms' },
-    { property: 'og:description', content: 'Spot the hype, verify the claims, protect your org. A community manifesto with teeth. Sign and share.' },
-    { property: 'og:image', content: 'https://iknowmyllm.com/hero_banner.jpg' },
-    { property: 'og:image:width', content: '1200' },
-    { property: 'og:image:height', content: '630' },
-    { property: 'og:url', content: 'https://iknowmyllm.com/' },
-    { property: 'og:type', content: 'website' },
-    { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:title', content: 'I Know My Own LLM — 8 Principles for Evaluating AI Platforms' },
-    { name: 'twitter:description', content: 'Evidence over promises, transparency over hype. The community checklist for AI vendor evaluation.' }
-  ],
-  link: [
-    { rel: 'canonical', href: 'https://iknowmyllm.com/' }
-  ],
+  description: '8 actionable principles for evaluating AI platforms. Spot red flags, verify credentials, demand proof. A community manifesto — sign and join.',
+  path: '/'
+})
+
+useHead({
   script: [
     {
       type: 'application/ld+json',
@@ -264,11 +252,58 @@ useHead({
 
 // Data
 const principles = ref(parsePrinciplesMarkdown(principlesMarkdown))
-const redFlags = ref([])
-const signatoryCount = ref(0)
-const redFlagCount = ref(0)
+const { data: redFlags } = await useFetch('/api/red-flags', {
+  default: () => []
+})
+const { data: signatures } = await useFetch('/api/signatures', {
+  default: () => []
+})
+const signatoryCount = computed(() => signatures.value.length)
+const redFlagCount = computed(() => redFlags.value.length)
 const copied = ref(false)
-const signatures = ref([])
+const { trackEvent } = useAnalytics()
+const pageRoot = ref<HTMLElement | null>(null)
+let revealObserver: IntersectionObserver | undefined
+
+onMounted(() => {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+  const items = pageRoot.value?.querySelectorAll<HTMLElement>(
+    '.section h2, .section-intro, .principle-row, .flag-card, .sign-card, .signature-card, .cta-box, .flags-reminder'
+  ) || []
+
+  revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return
+      entry.target.classList.add('is-visible')
+      revealObserver?.unobserve(entry.target)
+    })
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px' })
+
+  items.forEach((item, index) => {
+    item.classList.add('reveal-item')
+    item.style.setProperty('--reveal-delay', `${(index % 4) * 70}ms`)
+    revealObserver?.observe(item)
+  })
+})
+
+onBeforeUnmount(() => revealObserver?.disconnect())
+
+useHead({
+  script: [{
+    type: 'application/ld+json',
+    innerHTML: JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      name: 'Eight Principles for Evaluating AI Vendors',
+      itemListElement: principles.value.map((principle, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: principle.title
+      }))
+    })
+  }]
+})
 
 // Top 6 for homepage preview
 const topRedFlags = computed(() => redFlags.value.slice(0, 9))
@@ -385,36 +420,12 @@ function parseRedFlagsCsv(csv) {
 // Methods
 function copyLink() {
   navigator.clipboard.writeText(siteUrl)
+  trackEvent('copy_link', { page_path: '/', placement: 'sign_section' })
   copied.value = true
   setTimeout(() => copied.value = false, 2000)
 }
 
 
-onMounted(async () => {
-  // Load red flags from CSV
-  try {
-    const flagsResponse = await fetch('/red_flag_stories.csv')
-    if (flagsResponse.ok) {
-      const flagsCsv = await flagsResponse.text()
-      redFlags.value = parseRedFlagsCsv(flagsCsv)
-      redFlagCount.value = redFlags.value.length
-    }
-  } catch (error) {
-    console.log('Could not load red flags:', error)
-  }
-
-  // Load signatures from CSV
-  try {
-    const response = await fetch('/signatures.csv')
-    if (response.ok) {
-      const csv = await response.text()
-        signatures.value = parseSignatures(csv)
-      signatoryCount.value = signatures.value.length
-    }
-  } catch (error) {
-    console.log('Could not load signatures:', error)
-  }
-})
 </script>
 
 <style scoped>
@@ -448,6 +459,23 @@ onMounted(async () => {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+@keyframes badgeGlow {
+  0%, 100% { box-shadow: 0 0 0 rgba(138, 180, 248, 0); }
+  50% { box-shadow: 0 0 24px rgba(138, 180, 248, 0.22); }
+}
+
+.reveal-item {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 650ms ease var(--reveal-delay, 0ms),
+    transform 650ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms);
+}
+
+.reveal-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Hero */
@@ -487,7 +515,7 @@ onMounted(async () => {
   position: absolute;
   inset: 0;
   background: linear-gradient(120deg, rgba(13, 16, 22, 0.88), rgba(18, 18, 18, 0.78)),
-    url('/hero_banner.png') center/cover no-repeat fixed;
+    url('/hero_banner.jpg') center/cover no-repeat fixed;
   filter: saturate(0.9);
   z-index: 0;
 }
@@ -527,6 +555,7 @@ onMounted(async () => {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin-bottom: 1.5rem;
+  animation: badgeGlow 3.5s ease-in-out 1s infinite;
 }
 
 .hero h1 {
@@ -562,6 +591,13 @@ onMounted(async () => {
   padding: 1.2rem 1.4rem;
   box-shadow: 0 12px 30px rgba(8, 10, 15, 0.35);
   backdrop-filter: blur(10px);
+  transition: transform 260ms ease, border-color 260ms ease, box-shadow 260ms ease;
+}
+
+.meta-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(138, 180, 248, 0.48);
+  box-shadow: 0 18px 38px rgba(8, 10, 15, 0.48);
 }
 
 .meta-label {
@@ -780,7 +816,7 @@ onMounted(async () => {
   margin-bottom: 1rem;
 }
 
-.flag-card h4 {
+.flag-card h3 {
   font-size: 1.3rem;
   margin-bottom: 1rem;
   color: var(--accent);
@@ -945,6 +981,30 @@ onMounted(async () => {
   font-size: 0.8rem;
   color: var(--text-muted);
   margin-top: 1rem;
+}
+
+@media (max-width: 768px), (prefers-reduced-motion: reduce) {
+  .hero-bg {
+    background-attachment: scroll;
+  }
+
+  .reveal-item,
+  .reveal-item.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .hero-copy,
+  .hero-panel,
+  .hero-badge {
+    animation: none;
+  }
+}
+
+.form-note a {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
 }
 
 .sign-info {

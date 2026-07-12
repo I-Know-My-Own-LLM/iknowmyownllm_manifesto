@@ -353,22 +353,37 @@
 </template>
 
 <script setup lang="ts">
-useHead({
+usePageSeo({
   title: 'Research Tools — AI Due Diligence Resources & Frameworks | I Know My Own LLM',
-  meta: [
-    { name: 'description', content: 'Verification databases, regulatory lookups, security certification checks, and AI governance frameworks. Everything you need to evaluate AI vendors properly.' },
-    { name: 'keywords', content: 'AI due diligence tools, verify AI vendor, FINRA BrokerCheck AI, SOC 2 verification, AI governance frameworks, OECD AI principles, EU AI Act' },
-    { property: 'og:title', content: 'Research Tools — AI Due Diligence Resources' },
-    { property: 'og:description', content: 'Regulatory lookups, security cert verification, and governance frameworks for evaluating AI platforms.' },
-    { property: 'og:url', content: 'https://iknowmyllm.com/resources' },
-    { property: 'og:image', content: 'https://iknowmyllm.com/hero_banner.jpg' },
-    { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:title', content: 'AI Due Diligence Research Tools' },
-    { name: 'twitter:description', content: 'Verification databases, regulatory lookups, and governance frameworks for evaluating AI vendors.' }
-  ],
-  link: [
-    { rel: 'canonical', href: 'https://iknowmyllm.com/resources' }
-  ]
+  description: 'Verification databases, regulatory lookups, security certification checks, and AI governance frameworks. Everything you need to evaluate AI vendors properly.',
+  path: '/resources'
+})
+
+useHead({
+  script: [{
+    type: 'application/ld+json',
+    innerHTML: JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      name: 'AI Vendor Due Diligence Resources',
+      itemListElement: [
+        'Regulatory and background checks',
+        'Security certification verification',
+        'Technical research databases',
+        'AI governance frameworks'
+      ].map((name, index) => ({ '@type': 'ListItem', position: index + 1, name }))
+    })
+  }, {
+    type: 'application/ld+json',
+    innerHTML: JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Manifesto', item: 'https://iknowmyllm.com/' },
+        { '@type': 'ListItem', position: 2, name: 'AI Due Diligence Resources', item: 'https://iknowmyllm.com/resources' }
+      ]
+    })
+  }]
 })
 </script>
 
